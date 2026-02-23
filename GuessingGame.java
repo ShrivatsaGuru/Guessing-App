@@ -20,7 +20,8 @@ public class GuessingGame
         gc.showRules();
         Scanner sc=new Scanner(System.in);
         int attempts=0;
-
+        int hintCount=0;
+        boolean hintFlag=true;
         // Loop for running the game till max attempts are reached
         // or user guesses the correct number.
         while(attempts<=gc.getMAXAttempts())    
@@ -29,8 +30,14 @@ public class GuessingGame
             int guess=sc.nextInt();
             attempts++;
             String result=GuessValidator.validateGuess(guess, gc.getTargetNumber());
+            String hint=HintService.generateHint(gc.getTargetNumber(),hintCount);
+            hintCount++;
             System.out.println(result);
-
+            if(hintFlag)   System.out.println(hint);
+            if(hint=="No more hints available")
+            {
+                hintFlag=false;
+            }
             //Break the loop immediately if the guess is correct.
             if(result=="CORRECT")
             {
