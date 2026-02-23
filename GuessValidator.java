@@ -9,17 +9,23 @@ It does NOT handle user input or output.
 */
 class GuessValidator
 {
-    public static String validateGuess(int guess,int target)
+    public static String validateGuess(int guess, int target)
     {
-        
-        if(guess==target)
+        StringBuilder result = new StringBuilder();
+
+        if (guess == target)
         {
-            return "CORRECT";
+            result.append("CORRECT");
         }
-        else if (guess<target)
+        else if (guess < target)
         {
-            return "Try a bigger number";
+            result.append("Try a bigger number");
         }
-        return "Try a smaller numnber";
+        else
+        {
+            result.append("Try a smaller number"); 
+        }
+
+        return result.toString();
     }
 }
